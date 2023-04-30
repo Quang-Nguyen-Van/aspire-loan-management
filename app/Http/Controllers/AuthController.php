@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\User;
 use App\Traits\HttpResponses;
 use Illuminate\Support\Facades\Auth;
@@ -15,18 +16,24 @@ class AuthController extends Controller
 
     public function login(LoginUserRequest $request)
     {
-        $request->validated($request->only(['email', 'password']));
+        try{
+            $request->validated($request->only(['email', 'password']));
 
-        if(!Auth::attempt($request->only(['email', 'password']))) {
-            return $this->responseError('', 'email and password do not match', 401);
+            if(!Auth::attempt($request->only(['email', 'password']))) {
+                return $this->responseError('', 'Credentials are incorrect', 401);
+            }
+
+            $user = User::where('email', $request->email)->first();
+
+            return $this->responseSuccess([
+                'user' => $user,
+                'token' => $user->createToken('API Token')->plainTextToken,
+            ]);
         }
-
-        $user = User::where('email', $request->email)->first();
-
-        return $this->responseSuccess([
-            'user' => $user,
-            'token' => $user->createToken('API Token')->plainTextToken,
-        ]);
+        catch(Exception $e)
+        {
+            return $this->responseError('', 'Credentials are incorrect', 401);
+        }
     }
 
 
@@ -35,28 +42,33 @@ class AuthController extends Controller
      */
     public function register(StoreUserRequest $request)
     {
-        $request->validated($request->all());
+        try{
+            $request->validated($request->all());
 
-        $user = User::create([
-            'name'      => $request->name,
-            'email'     => $request->email,
-            'password'  => Hash::make($request->password),
-        ]);
+            $user = User::create([
+                'name'      => $request->name,
+                'email'     => $request->email,
+                'password'  => Hash::make($request->password),
+            ]);
 
-        return $this->responseSuccess([
-            'user'  => $user,
-            'token' => $user->createToken('API Token ' . $user->name)->plainTextToken,
-        ]);
+            return $this->responseSuccess([
+                'user'  => $user,
+                'token' => $user->createToken('API Token ' . $user->name)->plainTextToken,
+            ], 'User had been created', 201);
+        }
+        catch(Exception $e)
+        {
+            return $this->responseError('', 'Credentials are incorrect', 401);
+        }
     }
 
 
     public function logout()
     {
         Auth::user()->currentAccessToken()->delete();
-        // auth()->user()->tokens()->delete();
 
         return $this->responseSuccess([
             'message' => 'You have succesfully been logged out'
-        ]);
+        ], 200);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\StatusEnum;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -18,10 +19,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->double('amount')->nullable(false);
-            $table->enum('status', ['PENDING', 'APPROVED', 'PAID'])->default('PENDING');
+            $table->string('status')->default('PENDING');
             $table->bigInteger('approver_id')->nullable(true);
             $table->dateTime('approved_at')->nullable(true);
-
+            $table->softDeletes();
             $table->timestamps();
         });
     }

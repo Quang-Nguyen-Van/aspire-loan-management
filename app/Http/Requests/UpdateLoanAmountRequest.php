@@ -2,10 +2,11 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Validation\Rules\Password;
+use App\Enums\StatusEnum;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUserRequest extends FormRequest
+class UpdateLoanAmountRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +26,9 @@ class StoreUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'      => ['required', 'string', 'max:255'],
-            'email'     => ['required', 'string', 'max:255', 'email', 'unique:users,email,'],
-            'password'  => ['required', 'confirmed', 'min:8'],
+            'amount' => ['numeric'],
+            'status'=> [Rule::in(StatusEnum::class)],
+            'approver_id' => ['numeric'],
         ];
     }
 }

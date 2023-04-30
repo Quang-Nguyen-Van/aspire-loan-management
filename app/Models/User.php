@@ -3,16 +3,20 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+
 
 class User extends Authenticatable
 {
     use HasApiTokens;
     use HasFactory;
     use Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -24,6 +28,14 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+
+
+    /**
+     * The attributes that should be visible for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $visible = ['id', 'name', 'email'];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -43,4 +55,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    protected $dates = ['deleted_at'];
+
 }
