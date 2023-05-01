@@ -28,3 +28,30 @@ php artisan db:seed
 - Admin user: admin@example.com / T3stabcde#
 
 
+### The postman collections are available 
+- Authentication.postman_collection.json
+- Loans.postman_collection.json
+- Payments.postman_collection.json
+
+
+### Application's Features are plitted into 3 parts: User, LoanAmount, and Repayments
+1. User:
+    - Register
+    - Login
+    - Admin role: Approve Loan Amount
+
+2. LoanAmount
+    - Create LoanAmount:
+        - When a LoanAmount is created the payments will be created automatically base on required_amount and loan_term. which the repayment amount and date are calculated to match the application's requirement.
+    - List LoanAmounts
+    - Show a specific LoanAmount
+    - Update a specific LoanAmount
+        - When a LoanAmount is updated the number of payments will be adjust automatically base on the loan_term and the repayment amount for each term will be recalculated to match the application's requirement.
+
+3. Repayment
+    - List Repayments
+    - Show a specific Repayment
+    - Repay a specific Repayment
+
+### Feature and Unit Tests
+    - I just apply some feature tests for the User part.
