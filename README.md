@@ -11,16 +11,6 @@ php artisan key:generate
 php artisan cache:clear && php artisan config:clear
 ```
 
-## Setup database
-```
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=aspire-loan-management
-DB_USERNAME={USERNAME}
-DB_PASSWORD={PASSWORD}
-```
-
 - The application has been configured to run with docker
 
 ### Start docker
