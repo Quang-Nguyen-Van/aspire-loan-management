@@ -125,7 +125,7 @@ class RepaymentController extends Controller
     public function repay(Request $request, $id)
     {
         $validated = $request->validate([
-            'paid_amount' => 'required|numeric',
+            'repaid_amount' => 'required|numeric',
         ]);
 
         $dataError = [];
@@ -134,21 +134,21 @@ class RepaymentController extends Controller
         try{
             $repayment = Repayment::where(['id' => $id, 'status' => StatusEnum::APPROVED, 'user_id' => Auth::user()->id])->firstOrFail();
 
-            if($validated['paid_amount'] >= $repayment->planned_repayment_amount){
-                $totalpaid_remainamount_loanamountstatus = $this->calculateParameters($repayment, $validated['paid_amount']);
+            if($validated['repaid_amount'] >= $repayment->planned_repayment_amount){
+                $totalpaid_remainamount_loanamountstatus = $this->calculateParameters($repayment, $validated['repaid_amount']);
 
-                if($totalpaid_remainamount_loanamountstatus['remain_amount'] >= $validated['paid_amount']){
+                if($totalpaid_remainamount_loanamountstatus['remain_amount'] >= $validated['repaid_amount']){
                     // Repayment
                     $validated['status'] = StatusEnum::PAID;
-                    $validated['paid_at'] = Carbon::now();
+                    $validated['repaid_at'] = Carbon::now();
                     $repayment->update($validated);
 
                     // LoanAmount
-                    $total_paid = $repayment->loanAmount->total_paid + $validated['paid_amount'];
-                    $loanAmountStatus = ($total_paid >= $repayment->loanAmount->amount) ? StatusEnum::PAID : $repayment->loanAmount->status;
+                    $total_repaid = $repayment->loanAmount->total_repaid + $validated['repaid_amount'];
+                    $loanAmountStatus = ($total_repaid >= $repayment->loanAmount->amount) ? StatusEnum::PAID : $repayment->loanAmount->status;
 
                     $repayment->loanAmount->update([
-                        'total_paid' => $totalpaid_remainamount_loanamountstatus['total_paid'],
+                        'total_repaid' => $totalpaid_remainamount_loanamountstatus['total_repaid'],
                         'status' => $totalpaid_remainamount_loanamountstatus['loan_amount_status'],
                     ]);
 
@@ -159,14 +159,14 @@ class RepaymentController extends Controller
                 else{
                     $dataError = [
                         'remain amount' => $totalpaid_remainamount_loanamountstatus['remain_amount'],
-                        'paid amount' => $validated['paid_amount'],
+                        'repaid amount' => $validated['repaid_amount'],
                     ];
                 }
             }
             else{
                 $dataError = [
                     'planned repayment amount' => $repayment->planned_repayment_amount,
-                    'paid amount' => $validated['paid_amount'],
+                    'repaid amount' => $validated['repaid_amount'],
                 ];
             }
 
@@ -184,18 +184,18 @@ class RepaymentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Models\Repayment
-     * @param  float  $paid_amount
-     * @return array[total_paid, loan_amount_status, remain_amount]
+     * @param  float  $repaid_amount
+     * @return array[total_repaid, loan_amount_status, remain_amount]
      */
 
-    private function calculateParameters($repayment, $paid_amount)
+    private function calculateParameters($repayment, $repaid_amount)
     {
-        $total_paid = $repayment->loanAmount->total_paid + $paid_amount;
+        $total_repaid = $repayment->loanAmount->total_repaid + $repaid_amount;
 
         $result = [
-            'total_paid' => $total_paid,
-            'loan_amount_status' => ($total_paid >= $repayment->loanAmount->amount) ? StatusEnum::PAID : $repayment->loanAmount->status,
-            'remain_amount' => round($repayment->loanAmount->amount - $repayment->loanAmount->total_paid, 2),
+            'total_repaid' => $total_repaid,
+            'loan_amount_status' => ($total_repaid >= $repayment->loanAmount->amount) ? StatusEnum::PAID : $repayment->loanAmount->status,
+            'remain_amount' => round($repayment->loanAmount->amount - $repayment->loanAmount->total_repaid, 2),
         ];
 
         return $result;

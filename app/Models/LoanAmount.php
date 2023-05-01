@@ -17,16 +17,18 @@ class LoanAmount extends Model
     protected $fillable = [
         'user_id',
         'amount',
+        'loan_term',
         'status',
         'approver_id',
-        'total_paid',
+        'approved_at',
+        'total_repaid',
     ];
 
     protected $casts = [
         'status' => StatusEnum::class
     ];
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'approved_at'];
 
 
     protected function user(): BelongsTo
@@ -34,7 +36,7 @@ class LoanAmount extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    protected function repayments(): HasMany
+    public function repayments(): HasMany
     {
         return $this->hasMany(Repayment::class, 'loan_amount_id');
     }

@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('status')->default('PENDING');
             $table->double('planned_repayment_amount');
             $table->date('planned_repayment_date');
-            $table->double('paid_amount')->nullable(true);
-            $table->dateTime('paid_at')->nullable(true);
+            $table->double('repaid_amount')->nullable(true);
+            $table->dateTime('repaid_at')->nullable(true);
             $table->softDeletes();
             $table->timestamps();
         });
