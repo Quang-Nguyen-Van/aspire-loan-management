@@ -28,7 +28,7 @@ class UpdateRepaymentRequest extends FormRequest
         return [
             'planned_repayment_amount' => ['numeric'],
             'planned_repayment_date' => ['date_format:Y-m-d'],
-            'paid_amount' => ['numeric'],
+            'repaid_amount' => ['numeric'],
         ];
     }
 }

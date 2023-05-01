@@ -23,7 +23,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     ]]);
 
     Route::resource('/repayments', RepaymentController::class, ['only' => [
-        'index', 'show', 'store', 'update', 'destroy'
+        'index', 'show' /* , 'store', 'update', 'destroy' */
     ]]);
 
     Route::patch('/repayments/repay/{id}', [RepaymentController::class, 'repay']);

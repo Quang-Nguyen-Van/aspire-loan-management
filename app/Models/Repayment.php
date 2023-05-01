@@ -19,8 +19,8 @@ class Repayment extends Model
         'status',
         'planned_repayment_amount',
         'planned_repayment_date',
-        'paid_amount',
-        'paid_at',
+        'repaid_amount',
+        'repaid_at',
     ];
 
 
@@ -28,7 +28,7 @@ class Repayment extends Model
         'status' => StatusEnum::class
     ];
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'repaid_at'];
 
 
     protected function loanAmount(): BelongsTo

@@ -19,9 +19,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->double('amount')->nullable(false);
+            $table->integer('loan_term')->nullable(false)->default(0);
             $table->string('status')->default('PENDING');
             $table->bigInteger('approver_id')->nullable(true);
             $table->dateTime('approved_at')->nullable(true);
+            $table->double('total_repaid')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

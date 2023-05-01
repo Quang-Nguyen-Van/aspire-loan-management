@@ -28,6 +28,7 @@ class StoreLoanAmountRequest extends FormRequest
     {
         return [
             'amount' => ['required', 'numeric'],
+            'loan_term' => ['required', 'numeric'],
         ];
     }
 }

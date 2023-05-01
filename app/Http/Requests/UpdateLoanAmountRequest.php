@@ -27,6 +27,7 @@ class UpdateLoanAmountRequest extends FormRequest
     {
         return [
             'amount' => ['numeric'],
+            'loan_term' => ['numeric'],
             'status'=> [Rule::in(StatusEnum::class)],
             'approver_id' => ['numeric'],
         ];
