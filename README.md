@@ -59,6 +59,6 @@ php artisan db:seed
 ### Run test
     
 ```
-./vendor/bin/sail test
+./vendor/bin/phpunit
 ```
 
