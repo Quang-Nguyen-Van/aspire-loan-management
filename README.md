@@ -55,3 +55,10 @@ php artisan db:seed
 
 ### Feature and Unit Tests
     - I just apply some feature tests for the User part.
+    
+### Run test
+    
+```
+./vendor/bin/sail test
+```
+
