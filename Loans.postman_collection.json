@@ -1,0 +1,291 @@
+{
+	"info": {
+		"_postman_id": "184c8e1e-16f9-4b8d-a6d2-c4013d8ec1ab",
+		"name": "Loans",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27155804",
+		"_collection_link": "https://www.postman.com/lunar-module-technologist-84205609/workspace/aspire-loan-management/collection/27155804-184c8e1e-16f9-4b8d-a6d2-c4013d8ec1ab?action=share&creator=27155804&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Get Loans",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|0QKKHo1TcVK4sX5iuElz7sFM25GEPGJaKhI6oyhh",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "localhost/api/loans",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"loans"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Loan-Amount",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|0QKKHo1TcVK4sX5iuElz7sFM25GEPGJaKhI6oyhh",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "amount",
+							"value": "10000",
+							"type": "text"
+						},
+						{
+							"key": "loan_term",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/api/loans",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"loans"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find one Loan Amount",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|0QKKHo1TcVK4sX5iuElz7sFM25GEPGJaKhI6oyhh",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost/api/loans/6",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"loans",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Loan-Amount",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|0QKKHo1TcVK4sX5iuElz7sFM25GEPGJaKhI6oyhh",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "amount",
+							"value": "15000",
+							"type": "text"
+						},
+						{
+							"key": "loan_term",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/api/loans/6",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"loans",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Loan-Amount",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|0QKKHo1TcVK4sX5iuElz7sFM25GEPGJaKhI6oyhh",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost/api/loans/6",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"loans",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Approve Loan-Amount",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "3|uUdsTSXjxn1jRhNlZIaPxlW1DsKzzbcGXpRs3CnE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "localhost/api/loans/approve/6",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"loans",
+						"approve",
+						"6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,212 @@
+{
+	"info": {
+		"_postman_id": "db17012a-0324-4ea5-8153-9e945514add1",
+		"name": "Payments",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27155804",
+		"_collection_link": "https://www.postman.com/lunar-module-technologist-84205609/workspace/aspire-loan-management/collection/27155804-db17012a-0324-4ea5-8153-9e945514add1?action=share&creator=27155804&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Get Repayments",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|0QKKHo1TcVK4sX5iuElz7sFM25GEPGJaKhI6oyhh",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost/api/repayments",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"repayments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get One Repayment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|0QKKHo1TcVK4sX5iuElz7sFM25GEPGJaKhI6oyhh",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost/api/repayments/3",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"repayments",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Repayment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|mBB7Gm9zLKPyj8TXUJSvRu5oNbUtO1dPZTdbACFo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "loan_amount_id",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "planned_repayment_amount",
+							"value": "3333",
+							"type": "text"
+						},
+						{
+							"key": "planned_repayment_date",
+							"value": "2023-05-07",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/api/repayments",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"repayments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Payment",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1|mBB7Gm9zLKPyj8TXUJSvRu5oNbUtO1dPZTdbACFo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/vnd.api+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "planned_repayment_amount",
+							"value": "24000",
+							"type": "text"
+						},
+						{
+							"key": "planned_repayment_date",
+							"value": "2023-05-08",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost/api/repayments/4",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"repayments",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Repay",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
